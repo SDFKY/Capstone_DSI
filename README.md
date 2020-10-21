@@ -146,7 +146,7 @@ The Top Decile has a success rate (Precision) of 76% and the Top 2 Deciles have 
 
 ## [Opportunities for Further Improvements](#opportunities-for-further-improvements) 
 
-
+The strategy recommended in this project should be tested and the model should be validated with real-world settings.  The lack of biometrics such as weight, blood pressure, serum glucose and Hg A1c yields a model with low accuracy which can be further improved with these metrics.  
 
 
 
