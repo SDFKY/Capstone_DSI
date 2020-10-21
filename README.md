@@ -2,6 +2,7 @@
 
 
 ## Table of Contents 
+- [Executive Summary](#executive-summary) 
 - [Acknowledgement](#acknowledgement)
 - [Problem Statement](#problem-statement) 
 - [Background](#background) 
@@ -10,19 +11,22 @@
 - [Model Interpretation](#model-interpretation)
 - [Sensitivity Analysis](#sensitivity-analysis)
 - [Model Activation Strategy](#model-activation-strategy)
-- [Executive Summary](#executive-summary) 
-- [Use Case Scenario](#use-case-scenario) 
-- [Data Acquisition](#data-acquisition) 
-- [Required Libraries](#required-libraries) 
-- [Supporting Documentation](#supporting-documentation) 
 - [Opportunities for Further Improvements](#opportunities-for-further-improvements) 
+- [Required Libraries](#required-libraries)
  
+## [Executive Summary](#executive-summary)
+
+This project analyzed a dataset of US hosptial records over a 10-year period for diabetic patients to predict readmission.  It focuses on identification of high-risk patients and provides an acitvation strategy for intervention to preempt therefore readmittance. The project also identifies the key features of patients who are likely to be readmitted.
+
 ## [Acknowledgement](#acknowledgement) 
 The author, [Navaneet Dutt](https://www.linkedin.com/in/navaneet/), thanks General Assembly's Data Science Immersive Louisville campus  and its sponsors, [Humana](http://www.humana.com) and [Microsoft](http://microsoft.com).  The author wishes to thank the instructional team, [Chuck Dye](https://www.linkedin.com/in/gregory-dye/), Alex Zandel, [John Hazard](https://www.linkedin.com/in/jdhazard/) and James Larkin, who provided instructions, encouragement and inspiration during the twelve-week program.
 
 ## [Problem Statement](#problem-statement) 
 The objective of this project is to identify patients who a high risk of readmittance to hospital after being released.  The project also identifies the characteristics of patients who were readmitted and those who were not.  In addition, the project provides an activation plan to reach out to the most vulnerable with a success rate higher than the overall model.
+
 ## [Background](#background) 
+Hospital readmission is a major drain of health resources and reflect inadequte treament upon admission.  The Center for Medicare and Medicaid Services penalizes hopitals for patient readmission.  
+
 The data was obtained from the Health Facts database compiled by the Cerner Corporation, Kansas City, MO.  The data comprises of clinical care records complied over a period of ten years from 1999-2008 and 130 hospitals and integrated delivery network.  These care institutions varied in bed size with 14 with 500+ beds, 78 with 100-499 beds, 38 with under 100 beds.  These institutions were fairly representative of the US with 18 in the Midwest, 58 in the Northeast, 28 in the South and 16 in the West.
 The data comprised of 101,766 encounter records for patients who were diabetic and were provided with diabetic management.  They were admitted to the hospitals for 24 hours or more.  Each record contained 50 features the diabetic encounters, including demographics, diagnoses, medications, number of visits in the year preceding the encounter, and payer information.
 
@@ -32,18 +36,18 @@ This project differs from the prior research as it focuses on identification of 
 
 The data set with 50 variables contained two keys – an encounter id which was unique and a patient number.  There were 30,248 duplicate records based on the patient number.  However, they were unique encounters and were not purged from the data set.  The dataset did not contain any NULL values, however there was a high incidence of “?”, ”No” and “None” values.  The resolutions of these values are discussed in the following paragraphs.
 
-### Demographics:
+#### Demographics:
 Race, gender and age had a few missing variables while weight had over 96% “?” values and were dropped from the analysis.  Age was in cohorts of 10 from 01-100 and considered categorical.  There were 2,274 encounters with missing gender, age or race and were dropped from the dataset. 
 Payer and Medical Specialty:   These two variables had 40% and 49% “?” values and were dropped.
 Diagnosis Codes: Each encounter had a maximum of three diagnosis codes indicating the major ailments.  These were ICD-9 codes and each of the fields (diag_1, diag_2, diag_3) had 700-800 distinct values.  These values were rolled up to 9 major ICD-9 disease classification.  A new field, diagnosis count, was created to count the number of diagnosis for each patient encounter.
 
-### Diabetes Medication:  
+#### Diabetes Medication:  
 There were 23 medications as features with three treatment outcomes, if a patient was administered the medication. Two of the medications were not administered to any patient encounter. Eight of the medications were administered to 1% or more patients with insulin being at 53% while the seven others were administered 1%-11% of the patients. There new field – ‘Up’, ‘Down’ and ‘Steady’ – were created that counted the three outcomes of the medications.  The fifteen medications which were administered to less than 1% of the patients, were then dropped from the data set.
 
-### Discharge Disposition: 
+#### Discharge Disposition: 
 Patients who expired in the hospital or were sent for hospice care were dropped from the data set.
 
-### Hg A1c Results: 
+#### Hg A1c Results: 
 Hg A1c was not a standard diabetes metric during the data collection period and only 17% of the encounters had data on this metric.  The analysis wanted to examine if measurement of this biometric had any affect on readmission and were kept in the dataset.
 
 All categorical variables were one hot encoded so that it can be utilized in ML algorithms.  The “eda_diabetes.ipynb” Jupyter Notebook provides the details of the EDA described above.  The data conversions were compiled in “model_inputs.ipynb” Jupyter Notebook for quick conversion and export as “input_file.csv” for use in model development.
