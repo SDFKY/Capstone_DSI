@@ -8,7 +8,8 @@
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Model Development](#model-development)
 - [Model Interpretation](#model-interpretation)
--  [Sensitivity Analysis of Threshold p-value in Logistic Regression](#sensitivity_analysis)
+- [Sensitivity Analysis](#sensitivity-analysis)
+- [Model Activation Strategy](#model-activation-strategy)
 - [Executive Summary](#executive-summary) 
 - [Use Case Scenario](#use-case-scenario) 
 - [Data Acquisition](#data-acquisition) 
@@ -78,32 +79,43 @@ The Top 5 and Bottom 5 patient features that drive Readmits are shown in the cha
    
 **Age:** The age cohorts 70-80 is the most vulnerable to readmits followed by 80-90 and 60-70.  The importance ratings follow the same pattern as readmit rates that reflects the model’s interpretability power.
 
-<img src = "images/age_import.png" width ="400" height = "275"> 
-<img src = "images/age_rate.png" width ="400" height = "275">  
+<img src = "images/age_import.png" width ="450" height = "300"> 
+<img src = "images/age_rate.png" width ="450" height = "300">  
 
 **Bottom 5 Drivers of Readmit**
 
 The Bottom 5 features are the ones that prevent readmits.
 
-**Primary Diagnosis:** Diabetes: The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
+**Primary Diagnosis-- Diabetes:** The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
 
 **Elective Admission:**
 
 Elective admission suggests preventive and cautionary admission and has the highest negative coefficient compared to other admission types.  The readmission rate is also the lowest among admission types suggesting strong interpretability of the model.
+
+<img src = "images/admit_type_import.png" width ="450" height = "300"> 
+<img src = "images/admit_type_rate.png" width ="450" height = "300">  
+
+**Hg A1c:** The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
+
+<img src = "images/A1c.png" width ="450" height = "300"> 
+<img src = "images/A1c.png" width ="450" height = "300">
   
 
-Hg A1c: The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
-  
-
-## [Sensitivity Analysis of Threshold p-value in Logistic Regression](#sensitivity_analysis)
+## [Sensitivity Analysis](#sensitivity-analysis)
 
 The chart below shows the sensitivity of changing the threshold p-value for Logistic Regression.  Te default is set at 0.5. Decreasing the p-value increase the Sensitivity rapidly while decreasing the Precision slightly.  Sensitivity which is the fraction of Trues (Observed Positives) predicted by the model, can be increased by lowering the threshold p-value. However, it comes at the expense of Predicted Positives as shown in the next chart.  Thus, False Positives also increases.  This compromises the efficacy of activation of the model in real world.
+
+<img src = "images/ASP.png" width ="400" height = "275"> 
+<img src = "images/precision.png" width ="400" height = "275"> 
    
-Model Activation Strategy:
+## [Model Activation Strategy](#model-activation-strategy)
+
 Logistic Regression models provides probability of success for every observation.  So, it provides the ability to change threshold p-value for classification.  This can be used to increase True Positives.  However, it comes at the expense of increased False Positives.
 In real-world, effective activation in form of intervention is constrained by limited resources.  Lowering threshold p-value identifies a group of Predicted Positives and provides no guidance on who to prioritize, that is, it is random thereafter. 
 An efficient strategy for intervention is to prioritize by ranking the patients by their p-value (probability of readmit) rather than two classes as Classification Matrix does.  The chart below shows the prioritization by segmenting the patient base into deciles.
-   
+ 
+<img src = "images/deciles.png" width ="600" height = "450">
+
 The Top Decile has a success rate (Precision) of 76% and the Top 2 Deciles have a cumulative success of 70%.  The comparable p-value threshold in classification is 0.6 and it will only reach 16% of the population with a precision of 72%.  The classification matrix does not provide any strategy should the business have the capacity for more intervention.
 
 
