@@ -7,7 +7,8 @@
 - [Background](#background) 
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Model Development](#model-development)
-- [Model Interpretation and Analysis](#model-interpretation)
+- [Model Interpretation](#model-interpretation)
+-  [Sensitivity Analysis of Threshold p-value in Logistic Regression](#sensitivity_analysis)
 - [Executive Summary](#executive-summary) 
 - [Use Case Scenario](#use-case-scenario) 
 - [Data Acquisition](#data-acquisition) 
@@ -24,7 +25,7 @@ The objective of this project is to identify patients who a high risk of readmit
 The data was obtained from the Health Facts database compiled by the Cerner Corporation, Kansas City, MO.  The data comprises of clinical care records complied over a period of ten years from 1999-2008 and 130 hospitals and integrated delivery network.  These care institutions varied in bed size with 14 with 500+ beds, 78 with 100-499 beds, 38 with under 100 beds.  These institutions were fairly representative of the US with 18 in the Midwest, 58 in the Northeast, 28 in the South and 16 in the West.
 The data comprised of 101,766 encounter records for patients who were diabetic and were provided with diabetic management.  They were admitted to the hospitals for 24 hours or more.  Each record contained 50 features the diabetic encounters, including demographics, diagnoses, medications, number of visits in the year preceding the encounter, and payer information.
 
-The data was downloaded from the [Center for Machine Learning and Intelligent Systems,] (https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008) University of California, Irvine. A [research paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3996476/), based on this dataset examined the impact of HbA1c measurements on readmission.  It needs to be highlighted that the data set for the research paper had additional five features for a total of 55.
+The data was downloaded from the [Center for Machine Learning and Intelligent Systems,](https://archive.ics.uci.edu/ml/datasets/Diabetes+130-US+hospitals+for+years+1999-2008) University of California, Irvine. A [research paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3996476/), based on this dataset examined the impact of HbA1c measurements on readmission.  It needs to be highlighted that the data set for the research paper had additional five features for a total of 55.
 This project differs from the prior research as it focuses on identification of high-risk patients and activation strategy to preempt hospitalization and therefore readmittance.
 ## [Exploratory Data Analysis](#exploratory-data-analysis)
 
@@ -59,7 +60,7 @@ The Stochastic Grandient Descend model was highly unstable as each run showed a 
  
 Though Random Forest had the highest Sensitivity, we choose the Logistic Regression for its simplicity and interpretability.  Also, Random Forest tends to overfit.
 
-## [Model Interpretation and Analysis](#model-interpretation)
+## [Model Interpretation](#model-interpretation)
 The Top 5 and Bottom 5 patient features that drive Readmits are shown in the chart below.   
 
 <img src = "images/drivers.png" width ="600" height = "450">
@@ -83,15 +84,18 @@ The Top 5 and Bottom 5 patient features that drive Readmits are shown in the cha
 **Bottom 5 Drivers of Readmit**
 
 The Bottom 5 features are the ones that prevent readmits.
-Primary Diagnosis: Diabetes: The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
-Elective Admission:
+
+**Primary Diagnosis:** Diabetes: The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
+
+**Elective Admission:**
+
 Elective admission suggests preventive and cautionary admission and has the highest negative coefficient compared to other admission types.  The readmission rate is also the lowest among admission types suggesting strong interpretability of the model.
   
 
 Hg A1c: The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
   
 
-Sensitivity Analysis of Threshold p-value in Logistic Regression
+## [Sensitivity Analysis of Threshold p-value in Logistic Regression](#sensitivity_analysis)
 
 The chart below shows the sensitivity of changing the threshold p-value for Logistic Regression.  Te default is set at 0.5. Decreasing the p-value increase the Sensitivity rapidly while decreasing the Precision slightly.  Sensitivity which is the fraction of Trues (Observed Positives) predicted by the model, can be increased by lowering the threshold p-value. However, it comes at the expense of Predicted Positives as shown in the next chart.  Thus, False Positives also increases.  This compromises the efficacy of activation of the model in real world.
    
