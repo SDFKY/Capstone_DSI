@@ -118,7 +118,9 @@ Elective admission suggests preventive and cautionary admission and has the high
 <img src = "images/admit_type_import.png" width ="375" height = "250"> 
 <img src = "images/admit_type_rate.png" width ="375" height = "250">  
 
-**Hg A1c:** The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest **absence of diabetes among those identified as diabetic** during hospital admission.
+**Hg A1c:** 
+
+The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest **absence of diabetes among those identified as diabetic** during hospital admission.
 
 <img src = "images/A1c_import.png" width ="375" height = "250"> 
 <img src = "images/A1c_rate.png" width ="375" height = "250">
