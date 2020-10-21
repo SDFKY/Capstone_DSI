@@ -54,7 +54,7 @@ The “model_diabetes.ipynb” Jupyter Notebook contains the codes for the model
 Seven different classification models were developed – Logistic Regression, K-means Clustering, Decision Tree, Random Forest, Bagging, Linear Support Vector Classifier and Stochastic Gradient Descend.  A 5-layer neural network analysis was also undertaken.
 The Stochastic Grandient Descend model was highly unstable as each run showed a different outcome.  In general, this model classified 80-85% of the test data set as readmits.  The other six models had similar Accuracy and Precision but varying Sensitivity.
 
-
+<img src = "images/model_compare.png" width ="800" height = "600">
  
 Though Random Forest had the highest Sensitivity, we choose the Logistic Regression for its simplicity and interpretability.
 
