@@ -62,51 +62,62 @@ The Stochastic Grandient Descend model was highly unstable as each run showed a 
 Though Random Forest had the highest Sensitivity, we choose the Logistic Regression for its simplicity and interpretability.  Also, Random Forest tends to overfit.
 
 ## [Model Interpretation](#model-interpretation)
+
 The Top 5 and Bottom 5 patient features that drive Readmits are shown in the chart below.   
 
 <img src = "images/drivers.png" width ="600" height = "450">
 
 ### Top 5 Features  of Readmit
 
-**In-Patient Days and Emergency Visits:** The number of prior in-patient days spent in the hospital and number of prior emergency care visits to a hospital in the preceding year are two of the top drivers.  
+**In-Patient Days and Emergency Visits:** 
 
-**Diabetes Medication:**  Being on a diabetes medication is a Top 5 driver which indicates that the patient is not adequately manage diabetes.  Issues like medication adherence and diabetes management therapies should be fully explored. 
+The number of prior in-patient days spent in the hospital and number of prior emergency care visits to a hospital in the preceding year are two of the top drivers.  
 
-**Referrals:**  Most of the hospitalization and subsequent readmits are also driven by the type of Referrals with referrals from Physicians and Care Facilities being the Top Drivers.  There are opportunities for care coordination and diabetes management to prevent readmits.  It is also interesting to note that the readmit rate for both Physician and Care Facilities referrals is higher than HMO/Clinic/Home Health.
+**Diabetes Medication:**  
 
-<img src = "images/referral_import.png" width ="450" height = "300">
-<img src = "images/referral_rate.png" width ="450" height = "300">
+Being on a diabetes medication is a Top 5 driver which indicates that the patient is not adequately manage diabetes.  Issues like medication adherence and diabetes management therapies should be fully explored. 
+
+**Referrals:**  
+
+Most of the hospitalization and subsequent readmits are also driven by the type of Referrals with referrals from Physicians and Care Facilities being the Top Drivers.  There are opportunities for care coordination and diabetes management to prevent readmits.  It is also interesting to note that the readmit rate for both Physician and Care Facilities referrals is higher than HMO/Clinic/Home Health.
+
+<img src = "images/referral_import.png" width ="375" height = "250">
+<img src = "images/referral_rate.png" width ="375" height = "250">
    
-**Age:** The age cohorts 70-80 is the most vulnerable to readmits followed by 80-90 and 60-70.  The importance ratings follow the same pattern as readmit rates that reflects the model’s interpretability power.
+**Age:** 
 
-<img src = "images/age_import.png" width ="450" height = "300"> 
-<img src = "images/age_rate.png" width ="450" height = "300">  
+The age cohorts 70-80 is the most vulnerable to readmits followed by 80-90 and 60-70.  The importance ratings follow the same pattern as readmit rates that reflects the model’s interpretability power.
+
+<img src = "images/age_import.png" width ="375" height = "250"> 
+<img src = "images/age_rate.png" width ="375" height = "250">  
 
 **Bottom 5 Drivers of Readmit**
 
 The Bottom 5 features are the ones that prevent readmits.
 
-**Primary Diagnosis-- Diabetes:** The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
+**Primary Diagnosis-- Diabetes:** 
+
+The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
 
 **Elective Admission:**
 
 Elective admission suggests preventive and cautionary admission and has the highest negative coefficient compared to other admission types.  The readmission rate is also the lowest among admission types suggesting strong interpretability of the model.
 
-<img src = "images/admit_type_import.png" width ="450" height = "300"> 
-<img src = "images/admit_type_rate.png" width ="450" height = "300">  
+<img src = "images/admit_type_import.png" width ="375" height = "250"> 
+<img src = "images/admit_type_rate.png" width ="375" height = "250">  
 
 **Hg A1c:** The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
 
-<img src = "images/A1c_import.png" width ="450" height = "300"> 
-<img src = "images/A1c_rate.png" width ="450" height = "300">
+<img src = "images/A1c_import.png" width ="375" height = "250"> 
+<img src = "images/A1c_rate.png" width ="375" height = "250">
   
 
 ## [Sensitivity Analysis](#sensitivity-analysis)
 
 The chart below shows the sensitivity of changing the threshold p-value for Logistic Regression.  Te default is set at 0.5. Decreasing the p-value increase the Sensitivity rapidly while decreasing the Precision slightly.  Sensitivity which is the fraction of Trues (Observed Positives) predicted by the model, can be increased by lowering the threshold p-value. However, it comes at the expense of Predicted Positives as shown in the next chart.  Thus, False Positives also increases.  This compromises the efficacy of activation of the model in real world.
 
-<img src = "images/ASP.png" width ="400" height = "250"> 
-<img src = "images/precision.png" width ="400" height = "250"> 
+<img src = "images/ASP.png" width ="375" height = "250"> 
+<img src = "images/precision.png" width ="375" height = "250"> 
    
 ## [Model Activation Strategy](#model-activation-strategy)
 
