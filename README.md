@@ -71,12 +71,14 @@ The Top 5 and Bottom 5 patient features that drive Readmits are shown in the cha
 **Diabetes Medication:**  Being on a diabetes medication is a Top 5 driver which indicates that the patient is not adequately manage diabetes.  Issues like medication adherence and diabetes management therapies should be fully explored. 
 
 **Referrals:**  Most of the hospitalization and subsequent readmits are also driven by the type of Referrals with referrals from Physicians and Care Facilities being the Top Drivers.  There are opportunities for care coordination and diabetes management to prevent readmits.  It is also interesting to note that the readmit rate for both Physician and Care Facilities referrals is higher than HMO/Clinic/Home Health.
+
 <img src = "images/referral_import.png" width ="450" height = "300">
 <img src = "images/referral_rate.png" width ="450" height = "300">
    
 **Age:** The age cohorts 70-80 is the most vulnerable to readmits followed by 80-90 and 60-70.  The importance ratings follow the same pattern as readmit rates that reflects the model’s interpretability power.
-<img src = "images/age_import.png" width ="450" height = "300"> 
-<img src = "images/age_rate.png" width ="450" height = "300">  
+
+<img src = "images/age_import.png" width ="400" height = "275"> 
+<img src = "images/age_rate.png" width ="400" height = "275">  
 
 **Bottom 5 Drivers of Readmit**
 
