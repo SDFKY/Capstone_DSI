@@ -97,16 +97,16 @@ Elective admission suggests preventive and cautionary admission and has the high
 
 **Hg A1c:** The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
 
-<img src = "images/A1c.png" width ="450" height = "300"> 
-<img src = "images/A1c.png" width ="450" height = "300">
+<img src = "images/A1c_import.png" width ="450" height = "300"> 
+<img src = "images/A1c_rate.png" width ="450" height = "300">
   
 
 ## [Sensitivity Analysis](#sensitivity-analysis)
 
 The chart below shows the sensitivity of changing the threshold p-value for Logistic Regression.  Te default is set at 0.5. Decreasing the p-value increase the Sensitivity rapidly while decreasing the Precision slightly.  Sensitivity which is the fraction of Trues (Observed Positives) predicted by the model, can be increased by lowering the threshold p-value. However, it comes at the expense of Predicted Positives as shown in the next chart.  Thus, False Positives also increases.  This compromises the efficacy of activation of the model in real world.
 
-<img src = "images/ASP.png" width ="400" height = "275"> 
-<img src = "images/precision.png" width ="400" height = "275"> 
+<img src = "images/ASP.png" width ="400" height = "250"> 
+<img src = "images/precision.png" width ="400" height = "250"> 
    
 ## [Model Activation Strategy](#model-activation-strategy)
 
