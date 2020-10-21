@@ -2,11 +2,12 @@
 
 
 ## Table of Contents 
-- [Team Introduction](#team-introduction)
+- [Acknowledgement](#acknowledgement)
 - [Problem Statement](#problem-statement) 
 - [Background](#background) 
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Model Development](#model-development)
+- [Model Interpretation and Analysis](#model-interpretation)
 - [Executive Summary](#executive-summary) 
 - [Use Case Scenario](#use-case-scenario) 
 - [Data Acquisition](#data-acquisition) 
@@ -14,8 +15,8 @@
 - [Supporting Documentation](#supporting-documentation) 
 - [Opportunities for Further Improvements](#opportunities-for-further-improvements) 
  
-## [Team Introduction](#team-introduction) 
-General Assembly's Data Science Immersive Louisville campus  is the sponsor of the project.  The lead modeler of this project is [Navaneet Dutt](https://www.linkedin.com/in/navaneet/). The instructional team, comprising of [Chuck Dye](https://www.linkedin.com/in/gregory-dye/), Alex Zandel, [John Hazard](https://www.linkedin.com/in/jdhazard/) and James Larkin, guided Navaneet Dutt in this initiative.
+## [Acknowledgement](#acknowledgement) 
+The author, [Navaneet Dutt](https://www.linkedin.com/in/navaneet/), thanks General Assembly's Data Science Immersive Louisville campus  and its sponsors, [Humana](http://www.humana.com) and [Microsoft](http://microsoft.com).  The author wishes to thank the instructional team, [Chuck Dye](https://www.linkedin.com/in/gregory-dye/), Alex Zandel, [John Hazard](https://www.linkedin.com/in/jdhazard/) and James Larkin, who provided instructions, encouragement and inspiration during the twelve-week program.
 
 ## [Problem Statement](#problem-statement) 
 The objective of this project is to identify patients who a high risk of readmittance to hospital after being released.  The project also identifies the characteristics of patients who were readmitted and those who were not.  In addition, the project provides an activation plan to reach out to the most vulnerable with a success rate higher than the overall model.
@@ -51,12 +52,55 @@ As 21 of the 34 variables in the final data set were categorical, the analysis b
 
 The “model_diabetes.ipynb” Jupyter Notebook contains the codes for the models.  After one-hot encoding, there were 79 independent variables.  A train-test split of 75-25 was undertaken.
 
-Seven different classification models were developed – Logistic Regression, K-means Clustering, Decision Tree, Random Forest, Bagging, Linear Support Vector Classifier and Stochastic Gradient Descend.  A 5-layer neural network analysis was also undertaken.
+Seven different classification models were developed – Logistic Regression, KNN, Decision Tree, Random Forest, Bagging, Linear Support Vector Classifier and Stochastic Gradient Descend.  A 5-layer neural network analysis was also undertaken.
 The Stochastic Grandient Descend model was highly unstable as each run showed a different outcome.  In general, this model classified 80-85% of the test data set as readmits.  The other six models had similar Accuracy and Precision but varying Sensitivity.
 
-<img src = "images/model_compare.png" width ="800" height = "600">
+<img src = "images/model_compare.png" width ="600" height = "450">
  
-Though Random Forest had the highest Sensitivity, we choose the Logistic Regression for its simplicity and interpretability.
+Though Random Forest had the highest Sensitivity, we choose the Logistic Regression for its simplicity and interpretability.  Also, Random Forest tends to overfit.
+
+## [Model Interpretation and Analysis](#model-interpretation)
+The Top 5 and Bottom 5 patient features that drive Readmits are shown in the chart below.   
+
+<img src = "images/drivers.png" width ="600" height = "450">
+
+### Top 5 Features  of Readmit
+
+**In-Patient Days and Emergency Visits:** The number of prior in-patient days spent in the hospital and number of prior emergency care visits to a hospital in the preceding year are two of the top drivers.  
+
+**Diabetes Medication:**  Being on a diabetes medication is a Top 5 driver which indicates that the patient is not adequately manage diabetes.  Issues like medication adherence and diabetes management therapies should be fully explored. 
+
+**Referrals:**  Most of the hospitalization and subsequent readmits are also driven by the type of Referrals with referrals from Physicians and Care Facilities being the Top Drivers.  There are opportunities for care coordination and diabetes management to prevent readmits.  It is also interesting to note that the readmit rate for both Physician and Care Facilities referrals is higher than HMO/Clinic/Home Health.
+<img src = "images/referral_import.png" width ="450" height = "300">
+<img src = "images/referral_rate.png" width ="450" height = "300">
+   
+**Age:** The age cohorts 70-80 is the most vulnerable to readmits followed by 80-90 and 60-70.  The importance ratings follow the same pattern as readmit rates that reflects the model’s interpretability power.
+<img src = "images/age_import.png" width ="450" height = "300"> 
+<img src = "images/age_rate.png" width ="450" height = "300">  
+
+**Bottom 5 Drivers of Readmit**
+
+The Bottom 5 features are the ones that prevent readmits.
+Primary Diagnosis: Diabetes: The presence of this diagnosis indicator suggest that co-morbidities have not yet become prominent.  
+Elective Admission:
+Elective admission suggests preventive and cautionary admission and has the highest negative coefficient compared to other admission types.  The readmission rate is also the lowest among admission types suggesting strong interpretability of the model.
+  
+
+Hg A1c: The Hg A1c measure is a 3-month indicator of diabetes status unlike serum glucose measure.  Only 17% in the data set have the Hg A1c measure. A score of 7 or below indicates no long-term diabetes while between 7-8 indicates prevalence of diabetes. A score of 8 and above indicates severe diabetes.  Therefore, this indicator as the driver of preventing readmits suggest absence of diabetes among those identified as diabetic during hospital admission.
+  
+
+Sensitivity Analysis of Threshold p-value in Logistic Regression
+
+The chart below shows the sensitivity of changing the threshold p-value for Logistic Regression.  Te default is set at 0.5. Decreasing the p-value increase the Sensitivity rapidly while decreasing the Precision slightly.  Sensitivity which is the fraction of Trues (Observed Positives) predicted by the model, can be increased by lowering the threshold p-value. However, it comes at the expense of Predicted Positives as shown in the next chart.  Thus, False Positives also increases.  This compromises the efficacy of activation of the model in real world.
+   
+Model Activation Strategy:
+Logistic Regression models provides probability of success for every observation.  So, it provides the ability to change threshold p-value for classification.  This can be used to increase True Positives.  However, it comes at the expense of increased False Positives.
+In real-world, effective activation in form of intervention is constrained by limited resources.  Lowering threshold p-value identifies a group of Predicted Positives and provides no guidance on who to prioritize, that is, it is random thereafter. 
+An efficient strategy for intervention is to prioritize by ranking the patients by their p-value (probability of readmit) rather than two classes as Classification Matrix does.  The chart below shows the prioritization by segmenting the patient base into deciles.
+   
+The Top Decile has a success rate (Precision) of 76% and the Top 2 Deciles have a cumulative success of 70%.  The comparable p-value threshold in classification is 0.6 and it will only reach 16% of the population with a precision of 72%.  The classification matrix does not provide any strategy should the business have the capacity for more intervention.
+
+
 
 
 
