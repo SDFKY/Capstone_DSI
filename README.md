@@ -145,7 +145,11 @@ An efficient strategy for intervention is to rank the patients by their p-value 
  
 <img src = "images/deciles.png" width ="600" height = "450">
 
-Segmenting by deciles provide a priorty list of patients that require intervention with a higher probability of reaching the Observed Positives.  The Top Decile above has a success rate (Precision) of 76% and the Top 2 Deciles have a cumulative success of 70%.   That is, by targeting the top 20% of the population, 14% of the Observed Positives can be reached. The Classification Matrix does not provide any clear and easy to understand strategy for outreach and intervention.  One has to set p-values to reach the target, which is not easy for business users to comprehend.  For example, to reach the target of 14% of the Observed Positives using the Classfication Matrix, one has to set a p value and determine the percentage of Precited Positives to choose at random.  At p =0.4, one needs to reach 38% of the Predict Positives which represents 26% of the total population.  At p =0.55, one needs to reach 86% of the Predicted Positivies which represents 21% of the total population.  The decile targetting provides ready to use segments for the business.
+Segmenting by deciles provide a business users an easy-to-use segements (deciles) to target based on their capacity and constraints.  The top decile has a higher probability of reaching the Observed Positives.  The Top Decile above has a success rate (Precision) of 76% and the Top 2 Deciles have a cumulative success of 70%.   That is, by targeting the top 20% of the population, 14% of the Observed Positives can be reached. 
+
+The Classification Matrix does not provide any clear and easy to understand strategy for outreach and intervention.  One has to set p-values to reach the target, which is not easy for business users to comprehend.  For example, to reach the target of 14% of the Observed Positives using the Classfication Matrix, one has to set a p value and determine the percentage of Precited Positives to choose at random.  At p =0.4, one needs to reach 38% of the Predict Positives which represents 26% of the total population.  At p =0.55, one needs to reach 86% of the Predicted Positivies which represents 21% of the total population.  
+
+The decile segmentation provides a simple targeting startegy for business to comprehend and deploy.
 
 
 ## [Opportunities for Further Improvements](#opportunities-for-further-improvements) 
