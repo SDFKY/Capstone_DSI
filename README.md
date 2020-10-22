@@ -16,7 +16,7 @@
  
 ## [Executive Summary](#executive-summary)
 
-This project analyzed a dataset of US hosptial records over a 10-year period for diabetic patients to predict readmission.  It focuses on identification of high-risk patients and provides an acitvation strategy for intervention to preempt readmittance. The project also identifies the key features of high risk and low risk patients.
+This project analyzed a dataset of US hosptial records over a 10-year period for diabetic patients to predict readmission.  It focuses on identification of high-risk patients and provides an acitvation strategy for intervention to preempt readmission. The project also identifies the key features of high risk and low risk patients.
 
 ## [Acknowledgement](#acknowledgement) 
 
